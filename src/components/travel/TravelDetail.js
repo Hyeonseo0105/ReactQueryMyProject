@@ -2,6 +2,7 @@ import { Fragment,useEffect } from "react";
 import { useQuery } from "react-query";
 import { useNavigate,useParams } from "react-router-dom";
 import apiClient from '../../http-commons'
+import { setCookie } from "../util/cookie";
 
 function TravelDetail(){
     const {no}=useParams()
@@ -76,6 +77,8 @@ function TravelDetail(){
     if(isLoading) return <h1 className="text-center">Loading...</h1>
     if(isError) return <h1 className="text-center">{error}</h1>
     console.log(data)
+
+    setCookie("travel"+no,data.data.poster1)
 
     return (
         <Fragment>

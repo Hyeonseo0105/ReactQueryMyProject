@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { useQuery } from "react-query";
 import { useNavigate,useParams } from "react-router-dom";
 import apiClient from '../../http-commons'
+import { setCookie } from "../util/cookie";
 
 function FoodDetail(){
 
@@ -18,6 +19,8 @@ function FoodDetail(){
    if(isError) return <h1 className="text-center">{error}</h1>
    console.log(data)
    
+   setCookie("food"+no,data.data.poster)
+
    return (
         <Fragment>
             <section className="page-section bg-light" id="portfolio">
@@ -40,7 +43,7 @@ function FoodDetail(){
                             <tr style={{"borderTopWidth": "thick"}}>&nbsp;&nbsp;&nbsp;{data.data.content}</tr>
                         </table>
                         <div style={{"height": "100px"}}></div>
-                        <div style={{"marginLeft": "50%"}}>
+                        <div style={{"marginLeft": "45%"}}>
                             <input type="button" onClick={()=>nav(-1)} className={"btn btn-dark btn-social mx-2"} value={"목록"}/>
                         </div>
                     </div>
